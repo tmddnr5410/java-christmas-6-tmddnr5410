@@ -20,6 +20,8 @@ public class InputView {
         System.out.println(INPUT_MESSAGE_MENU);
         String input = Console.readLine();
 
+        validateMenu(input);
+
         return input;
     }
 
@@ -28,6 +30,9 @@ public class InputView {
         exceptInteger(input);
     }
 
+    private static void validateMenu(String input) {
+        exceptInputNone(input);
+    }
 
     private static void exceptInputNone(String input) {
         if (input.isBlank()) {

@@ -30,7 +30,7 @@ public class PromotionController {
 
     private void saveMenu() {
         String input = InputView.readMenu();
-
+        
     }
 
 
