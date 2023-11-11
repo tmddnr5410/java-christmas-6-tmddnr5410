@@ -1,17 +1,18 @@
 package christmas.Controller;
 
+import christmas.Model.PromotionModel;
 import christmas.View.InputView;
 
 public class PromotionController {
-    private final InputView inputView = new InputView();
-
+    private PromotionModel promotionModel = new PromotionModel();
 
     public void startReserve() {
         saveDate();
     }
 
     private void saveDate() {
-        int date = inputView.readDate();
+        int input = InputView.readDate();
+        promotionModel.initDate(input);
     }
 
 
