@@ -8,29 +8,27 @@ public class PromotionController {
     private PromotionModel promotionModel = new PromotionModel();
 
     public void startReserve() {
+        saveDate();
+        saveMenu();
+    }
+
+    private void saveDate() {
         boolean errorChecker = true;
 
         while (errorChecker) {
             try {
-                saveDate();
+                int input = InputView.readDate();
+                promotionModel.initDate(input);
                 errorChecker = false;
             } catch (IllegalArgumentException error) {
                 OutputView.printError(error);
             }
         }
-
-        saveMenu();
-
-    }
-
-    private void saveDate() {
-        int input = InputView.readDate();
-        promotionModel.initDate(input);
     }
 
     private void saveMenu() {
         String input = InputView.readMenu();
-        
+        promotionModel.initOrder(input);
     }
 
 
