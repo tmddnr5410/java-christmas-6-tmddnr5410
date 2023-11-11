@@ -19,12 +19,17 @@ public class PromotionController {
             }
         }
 
+        saveMenu();
+
     }
 
     private void saveDate() {
-
         int input = InputView.readDate();
         promotionModel.initDate(input);
+    }
+
+    private void saveMenu() {
+        String input = InputView.readMenu();
 
     }
 
