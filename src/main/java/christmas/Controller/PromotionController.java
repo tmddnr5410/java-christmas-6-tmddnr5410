@@ -11,8 +11,10 @@ public class PromotionController {
     }
 
     private void saveDate() {
+
         int input = InputView.readDate();
         promotionModel.initDate(input);
+
     }
 
 

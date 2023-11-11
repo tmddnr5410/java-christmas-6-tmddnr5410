@@ -9,4 +9,5 @@ public class PromotionModel {
         date = new Date(input);
     }
 
+
 }
