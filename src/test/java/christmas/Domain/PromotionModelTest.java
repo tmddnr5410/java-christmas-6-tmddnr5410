@@ -15,7 +15,7 @@ public class PromotionModelTest {
         PromotionModel promotionModel = new PromotionModel();
         Assertions.assertThatThrownBy(() -> promotionModel.initOrder(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.INVALIDATE_ORDER);
+                .hasMessage(ErrorMessage.INVALIDATE_ORDER_SPLIT);
     }
 
     @ParameterizedTest
@@ -24,7 +24,7 @@ public class PromotionModelTest {
         PromotionModel promotionModel = new PromotionModel();
         Assertions.assertThatThrownBy(() -> promotionModel.initOrder(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.INVALIDATE_ORDER);
+                .hasMessage(ErrorMessage.INVALIDATE_MENU_SPLIT);
     }
 
 
@@ -35,6 +35,15 @@ public class PromotionModelTest {
         Assertions.assertThatThrownBy(() -> promotionModel.initOrder(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.INVALIDATE_ORDER);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"해산물파스타-x,레드와인-1,초코케이크-1", "해산물파스타-2,레드와인-tt,초코케이크-1"})
+    public void 주문수량이_문자인_경우에_대한_예외처리(String input) {
+        PromotionModel promotionModel = new PromotionModel();
+        Assertions.assertThatThrownBy(() -> promotionModel.initOrder(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.MENU_NOT_INT);
     }
 
 }

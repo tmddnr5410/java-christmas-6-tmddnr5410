@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class OrderListTest {
 
-    private static final String DEFAULT_ORDER_QUANTITY = "1";
+    private static final Integer DEFAULT_ORDER_QUANTITY = 1;
 
     @ParameterizedTest
     @ValueSource(strings = {"크림파스타", "화이트와인", "딸기케이크"})

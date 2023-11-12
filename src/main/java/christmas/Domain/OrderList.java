@@ -13,7 +13,7 @@ public class OrderList {
         }
     }
 
-    public void order(String menu, String quantity) {
+    public void order(String menu, Integer quantity) {
         validateMenu(menu);
     }
 

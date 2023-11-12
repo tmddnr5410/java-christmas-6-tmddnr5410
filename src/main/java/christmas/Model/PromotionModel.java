@@ -31,34 +31,42 @@ public class PromotionModel {
         for (String order : orders) {
             List<String> orderComponents = Arrays.asList(order.split(MENU_DIVIDE_POINT));
 
-            validateMenuSplit(orderComponents);
+            validateorderComponents(orderComponents);
 
             String menu = orderComponents.get(ORDER_MENU_INDEX);
             String quantity = orderComponents.get(ORDER_QUANTITY_INDEX);
 
-            orderList.order(menu, quantity);
+            orderList.order(menu, Integer.parseInt(quantity));
         }
 
-    }
-
-    private void validateMenuSplit(List<String> order) {
-        exceptInvalidDivideSize(order);
-
-    }
-
-    private void exceptInvalidDivideSize(List<String> order) {
-        if (order.size() != MENU_DIVIDE_SIZE) {
-            throw new IllegalArgumentException(ErrorMessage.INVALIDATE_ORDER);
-        }
     }
 
     private void validateOrderSplit(List<String> orders) {
         exceptOrderSplit(orders);
     }
 
+    private void validateorderComponents(List<String> order) {
+        exceptInvalidDivideSize(order);
+        exceptNotInteger(order.get(ORDER_QUANTITY_INDEX));
+    }
+
+    private void exceptNotInteger(String quantity) {
+        try {
+            Integer.parseInt(quantity);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.MENU_NOT_INT);
+        }
+    }
+
+    private void exceptInvalidDivideSize(List<String> order) {
+        if (order.size() != MENU_DIVIDE_SIZE) {
+            throw new IllegalArgumentException(ErrorMessage.INVALIDATE_MENU_SPLIT);
+        }
+    }
+
     private void exceptOrderSplit(List<String> orders) {
         if (isSplitEmpty(orders)) {
-            throw new IllegalArgumentException(ErrorMessage.INVALIDATE_ORDER);
+            throw new IllegalArgumentException(ErrorMessage.INVALIDATE_ORDER_SPLIT);
         }
     }
 
