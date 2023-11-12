@@ -1,9 +1,10 @@
 package christmas.Domain;
 
 import java.util.EnumMap;
+import java.util.List;
 
 public class OrderList {
-    EnumMap<Menu, Integer> orderList;
+    private EnumMap<Menu, Integer> orderList;
 
     public OrderList() {
         orderList = new EnumMap<>(Menu.class);
@@ -11,4 +12,9 @@ public class OrderList {
             orderList.put(menu, 0);
         }
     }
+
+    public void orderMenu(List<String> orders) {
+    }
+
+
 }
