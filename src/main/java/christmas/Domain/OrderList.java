@@ -15,11 +15,13 @@ public class OrderList {
 
     public void order(String menu, Integer quantity) {
         validateMenu(menu);
+        orderList.put(Menu.findByMenuName(menu), quantity);
     }
 
     private void validateMenu(String menu) {
         exceptIsNull(menu);
         exceptInvalidMenu(menu);
+        exceptDuplicatedOrder(menu);
     }
 
     private void exceptIsNull(String value) {
@@ -32,6 +34,17 @@ public class OrderList {
         if (Menu.isNotInMenu(value)) {
             throw new IllegalArgumentException(ErrorMessage.INVALIDATE_ORDER);
         }
+    }
+
+
+    private void exceptDuplicatedOrder(String menu) {
+        if (isAlreadyOrder(menu)) {
+            throw new IllegalArgumentException(ErrorMessage.INVALIDATE_ORDER);
+        }
+    }
+
+    private boolean isAlreadyOrder(String menu) {
+        return orderList.get(Menu.findByMenuName(menu)) != 0;
     }
 
 }

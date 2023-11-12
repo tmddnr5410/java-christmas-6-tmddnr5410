@@ -30,4 +30,13 @@ public class OrderListTest {
                 .hasMessage(ErrorMessage.INVALIDATE_ORDER);
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"해산물파스타"})
+    public void 중복된_메뉴가_입력되는_경우에_대한_테스트(String input) {
+        OrderList testOrderList = new OrderList();
+        testOrderList.order(input, DEFAULT_ORDER_QUANTITY);
+        Assertions.assertThatThrownBy(() -> testOrderList.order(input, DEFAULT_ORDER_QUANTITY))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INVALIDATE_ORDER);
+    }
 }

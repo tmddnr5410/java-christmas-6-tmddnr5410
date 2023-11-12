@@ -46,4 +46,13 @@ public class PromotionModelTest {
                 .hasMessage(ErrorMessage.MENU_NOT_INT);
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"해산물파스타-1,해산물파스타-2,초코케이크-1", "해산물파스타-1,초코케이크-1,해산물파스타-2"})
+    public void 중복된_메뉴가_입력되는_경우에_대한_테스트(String input) {
+        PromotionModel promotionModel = new PromotionModel();
+        Assertions.assertThatThrownBy(() -> promotionModel.initOrder(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INVALIDATE_ORDER);
+    }
+
 }

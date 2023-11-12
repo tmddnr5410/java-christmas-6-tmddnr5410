@@ -16,15 +16,14 @@ public class PromotionModel {
     private Date date;
     private OrderList orderList;
 
-    public PromotionModel() {
-        orderList = new OrderList();
-    }
 
     public void initDate(int input) {
         date = new Date(input);
     }
 
     public void initOrder(String input) {
+        orderList = new OrderList();
+
         List<String> orders = Arrays.asList(input.split(ORDER_DIVIDE_POINT));
         validateOrderSplit(orders);
 
@@ -38,7 +37,6 @@ public class PromotionModel {
 
             orderList.order(menu, Integer.parseInt(quantity));
         }
-
     }
 
     private void validateOrderSplit(List<String> orders) {
