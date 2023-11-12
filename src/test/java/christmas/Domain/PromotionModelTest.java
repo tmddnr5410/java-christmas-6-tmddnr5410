@@ -26,4 +26,15 @@ public class PromotionModelTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.INVALIDATE_ORDER);
     }
+
+
+    @ParameterizedTest
+    @ValueSource(strings = {"크림파스타-2,레드와인-1,초코케이크-1", "해산물파스타-2,화이트와인-1,초코케이크-1"})
+    public void 없는메뉴가_주문되는_경우에_대한_예외처리(String input) {
+        PromotionModel promotionModel = new PromotionModel();
+        Assertions.assertThatThrownBy(() -> promotionModel.initOrder(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INVALIDATE_ORDER);
+    }
+
 }

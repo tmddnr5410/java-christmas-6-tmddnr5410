@@ -1,7 +1,7 @@
 package christmas.Domain;
 
+import christmas.Constant.ErrorMessage;
 import java.util.EnumMap;
-import java.util.List;
 
 public class OrderList {
     private EnumMap<Menu, Integer> orderList;
@@ -13,8 +13,25 @@ public class OrderList {
         }
     }
 
-    public void orderMenu(List<String> orders) {
+    public void order(String menu, String quantity) {
+        validateMenu(menu);
     }
 
+    public void validateMenu(String menu) {
+        exceptIsNull(menu);
+        exceptInvalidMenu(menu);
+    }
+
+    public void exceptIsNull(String value) {
+        if (value.isBlank()) {
+            throw new IllegalArgumentException(ErrorMessage.INVALIDATE_ORDER);
+        }
+    }
+
+    public void exceptInvalidMenu(String value) {
+        if (Menu.isNotInMenu(value)) {
+            throw new IllegalArgumentException(ErrorMessage.INVALIDATE_ORDER);
+        }
+    }
 
 }

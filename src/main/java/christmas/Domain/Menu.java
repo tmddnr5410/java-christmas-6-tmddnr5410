@@ -1,5 +1,7 @@
 package christmas.Domain;
 
+import java.util.Arrays;
+
 public enum Menu {
     MUSHROOM_SOUP("appetizer", "양송이수프", 6000),
     TAPAS("appetizer", "타파스", 5500),
@@ -22,6 +24,11 @@ public enum Menu {
         this.type = type;
         this.name = name;
         this.price = price;
+    }
+
+    public static boolean isNotInMenu(String orderMenu) {
+        return Arrays.stream(Menu.values())
+                .noneMatch(menu -> menu.name.equalsIgnoreCase(orderMenu));
     }
 
 
