@@ -17,18 +17,18 @@ public class OrderList {
         validateMenu(menu);
     }
 
-    public void validateMenu(String menu) {
+    private void validateMenu(String menu) {
         exceptIsNull(menu);
         exceptInvalidMenu(menu);
     }
 
-    public void exceptIsNull(String value) {
+    private void exceptIsNull(String value) {
         if (value.isBlank()) {
             throw new IllegalArgumentException(ErrorMessage.INVALIDATE_ORDER);
         }
     }
 
-    public void exceptInvalidMenu(String value) {
+    private void exceptInvalidMenu(String value) {
         if (Menu.isNotInMenu(value)) {
             throw new IllegalArgumentException(ErrorMessage.INVALIDATE_ORDER);
         }
