@@ -27,8 +27,17 @@ public class PromotionController {
     }
 
     private void saveMenu() {
-        String input = InputView.readMenu();
-        promotionModel.processOrder(input);
+        boolean errorChecker = true;
+
+        while (errorChecker) {
+            try {
+                String input = InputView.readMenu();
+                promotionModel.processOrder(input);
+                errorChecker = false;
+            } catch (IllegalArgumentException error) {
+                OutputView.printError(error);
+            }
+        }
     }
 
 

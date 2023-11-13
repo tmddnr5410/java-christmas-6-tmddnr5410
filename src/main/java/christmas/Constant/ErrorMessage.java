@@ -9,6 +9,5 @@ public class ErrorMessage {
 
     public static final String OUT_DATE_RANGE = "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.";
     public static final String INVALIDATE_ORDER = "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.";
-    public static final String INVALIDATE_ORDE = "[ERROR] 음료수만햊ㅆ자나. 다시 입력해 주세요.";
 
 }

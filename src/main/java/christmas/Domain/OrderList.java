@@ -23,7 +23,7 @@ public class OrderList {
 
     public void validateSelf() {
         if (isOnlyBeverage()) {
-            throw new IllegalArgumentException(ErrorMessage.INVALIDATE_ORDE);
+            throw new IllegalArgumentException(ErrorMessage.INVALIDATE_ORDER);
         }
     }
 

@@ -70,6 +70,6 @@ public class PromotionModelTest {
         PromotionModel promotionModel = new PromotionModel();
         Assertions.assertThatThrownBy(() -> promotionModel.processOrder(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.INVALIDATE_ORDE);
+                .hasMessage(ErrorMessage.INVALIDATE_ORDER);
     }
 }
