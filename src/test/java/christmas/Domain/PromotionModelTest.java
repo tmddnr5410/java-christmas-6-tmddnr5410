@@ -55,4 +55,12 @@ public class PromotionModelTest {
                 .hasMessage(ErrorMessage.INVALIDATE_ORDER);
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"해산물파스타-1,레드와인-0,초코케이크-1", "해산물파스타-0,초코케이크-1"})
+    public void 주문수량이_최솟값보다_낮은_경우에_대한_테스트(String input) {
+        PromotionModel promotionModel = new PromotionModel();
+        Assertions.assertThatThrownBy(() -> promotionModel.initOrder(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INVALIDATE_ORDER);
+    }
 }
