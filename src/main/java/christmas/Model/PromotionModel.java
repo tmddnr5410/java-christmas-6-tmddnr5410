@@ -37,6 +37,7 @@ public class PromotionModel {
 
             orderList.order(menu, Integer.parseInt(quantity));
         }
+        orderList.validateSelf();
     }
 
     private void validateOrderSplit(List<String> orders) {

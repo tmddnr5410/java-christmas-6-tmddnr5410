@@ -4,17 +4,17 @@ import christmas.Constant.ErrorMessage;
 import java.util.Arrays;
 
 public enum Menu {
-    MUSHROOM_SOUP("appetizer", "양송이수프", 6000),
-    TAPAS("appetizer", "타파스", 5500),
-    CAESAR_SALAD("appetizer", "시저샐러드", 8000),
-    T_BONE_STAKE("main", "티본스테이크", 55000),
-    BARBECUE_RIB("main", "바비큐립", 6000),
-    CAESAR_PASTA("main", "해산물파스타", 6000),
-    CHOCO_CAKE("desert", "초코케이크", 6000),
-    ICE_CREAM("desert", "아이스크림", 6000),
-    ZERO_COKE("drink", "제로콜라", 6000),
-    RED_WINE("drink", "레드와인", 6000),
-    CHAMPAGNE("drink", "샴페인", 6000);
+    MUSHROOM_SOUP(MenuType.APPETIZER, "양송이수프", 6000),
+    TAPAS(MenuType.APPETIZER, "타파스", 5500),
+    CAESAR_SALAD(MenuType.APPETIZER, "시저샐러드", 8000),
+    T_BONE_STAKE(MenuType.MAIN, "티본스테이크", 55000),
+    BARBECUE_RIB(MenuType.MAIN, "바비큐립", 6000),
+    CAESAR_PASTA(MenuType.MAIN, "해산물파스타", 6000),
+    CHOCO_CAKE(MenuType.DESERT, "초코케이크", 6000),
+    ICE_CREAM(MenuType.DESERT, "아이스크림", 6000),
+    ZERO_COKE(MenuType.DRINK, "제로콜라", 6000),
+    RED_WINE(MenuType.DRINK, "레드와인", 6000),
+    CHAMPAGNE(MenuType.DRINK, "샴페인", 6000);
 
 
     private final String type;
@@ -25,6 +25,10 @@ public enum Menu {
         this.type = type;
         this.name = name;
         this.price = price;
+    }
+
+    public String getType() {
+        return type;
     }
 
     public static boolean isNotInMenu(String orderMenu) {

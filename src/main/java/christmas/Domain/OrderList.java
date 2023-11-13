@@ -20,6 +20,25 @@ public class OrderList {
         orderList.put(Menu.findByMenuName(menu), quantity);
     }
 
+
+    public void validateSelf() {
+        if (isOnlyBeverage()) {
+            throw new IllegalArgumentException(ErrorMessage.INVALIDATE_ORDE);
+        }
+    }
+
+    private boolean isOnlyBeverage() {
+        for (EnumMap.Entry<Menu, Integer> entry : orderList.entrySet()) {
+            Menu menu = entry.getKey();
+            int quantity = entry.getValue();
+
+            if (quantity > 0 && !MenuType.DRINK.equals(menu.getType())) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     private void validateQuantity(Integer quantity) {
         exceptNotPositive(quantity);
     }
