@@ -72,4 +72,14 @@ public class PromotionModelTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.INVALIDATE_ORDER);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"해산물파스타-1,레드와인-19,초코케이크-1", "해산물파스타-20,레드와인-19,초코케이크-1"})
+    public void 입력이_최대_주문수량을_넘기는_경우에_대한_예외처리(String input) {
+        PromotionModel promotionModel = new PromotionModel();
+        Assertions.assertThatThrownBy(() -> promotionModel.processOrder(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.ORDER_IS_FULL);
+    }
+
 }

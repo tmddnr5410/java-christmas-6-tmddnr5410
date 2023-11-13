@@ -6,7 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class OrderList {
-    private static Integer MIN_ORDER_QUANTITY = 1;
+    private static Integer MIN_MENU_QUANTITY = 1;
+    private static Integer MAX_ORDER_QUANTITY = 20;
     private EnumMap<Menu, Integer> orderList;
 
     public OrderList() {
@@ -26,6 +27,9 @@ public class OrderList {
     public void validateSelf() {
         if (isOnlyBeverage()) {
             throw new IllegalArgumentException(ErrorMessage.INVALIDATE_ORDER);
+        }
+        if (isOrderFull()) {
+            throw new IllegalArgumentException(ErrorMessage.ORDER_IS_FULL);
         }
     }
 
@@ -65,6 +69,19 @@ public class OrderList {
         return true;
     }
 
+    private boolean isOrderFull() {
+        Integer totalQuantity = 0;
+
+        for (Integer quantity : orderList.values()) {
+            totalQuantity += quantity;
+            if (totalQuantity > MAX_ORDER_QUANTITY) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     private void validateQuantity(Integer quantity) {
         exceptNotPositive(quantity);
     }
@@ -96,7 +113,7 @@ public class OrderList {
     }
 
     private void exceptNotPositive(Integer quantity) {
-        if (quantity < MIN_ORDER_QUANTITY) {
+        if (quantity < MIN_MENU_QUANTITY) {
             throw new IllegalArgumentException(ErrorMessage.INVALIDATE_ORDER);
         }
     }
