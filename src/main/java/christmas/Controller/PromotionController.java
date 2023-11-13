@@ -8,8 +8,9 @@ public class PromotionController {
     private PromotionModel promotionModel = new PromotionModel();
 
     public void startReserve() {
+        OutputView.printWelcome();
         saveDate();
-        saveMenu();
+        saveOrder();
     }
 
     private void saveDate() {
@@ -26,7 +27,7 @@ public class PromotionController {
         }
     }
 
-    private void saveMenu() {
+    private void saveOrder() {
         boolean errorChecker = true;
 
         while (errorChecker) {
@@ -40,5 +41,8 @@ public class PromotionController {
         }
     }
 
+    private void calculateReservationResult() {
+        OutputView.printResultTitle();
+    }
 
 }
