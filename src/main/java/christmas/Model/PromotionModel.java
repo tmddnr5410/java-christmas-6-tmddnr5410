@@ -5,6 +5,7 @@ import christmas.Domain.Date;
 import christmas.Domain.OrderList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class PromotionModel {
 
@@ -30,8 +31,12 @@ public class PromotionModel {
         for (String order : orders) {
             addToOrderList(order);
         }
-        
+
         orderList.validateSelf();
+    }
+
+    public Map<String, Integer> transferOrderList() {
+        return orderList.getMenuInfo();
     }
 
     private void addToOrderList(String order) {

@@ -31,6 +31,10 @@ public enum Menu {
         return type;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public static boolean isNotInMenu(String orderMenu) {
         return Arrays.stream(Menu.values())
                 .noneMatch(menu -> menu.name.equalsIgnoreCase(orderMenu));

@@ -2,6 +2,8 @@ package christmas.Domain;
 
 import christmas.Constant.ErrorMessage;
 import java.util.EnumMap;
+import java.util.HashMap;
+import java.util.Map;
 
 public class OrderList {
     private static Integer MIN_ORDER_QUANTITY = 1;
@@ -25,6 +27,18 @@ public class OrderList {
         if (isOnlyBeverage()) {
             throw new IllegalArgumentException(ErrorMessage.INVALIDATE_ORDER);
         }
+    }
+
+    public Map<String, Integer> getMenuInfo() {
+        Map<String, Integer> menuInfo = new HashMap<>();
+
+        for (Map.Entry<Menu, Integer> entry : orderList.entrySet()) {
+            if (entry.getValue() > 0) {
+                menuInfo.put(entry.getKey().getName(), entry.getValue());
+            }
+        }
+
+        return menuInfo;
     }
 
     private boolean isOnlyBeverage() {

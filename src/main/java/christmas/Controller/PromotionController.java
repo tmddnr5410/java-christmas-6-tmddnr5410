@@ -3,6 +3,7 @@ package christmas.Controller;
 import christmas.Model.PromotionModel;
 import christmas.View.InputView;
 import christmas.View.OutputView;
+import java.util.Map;
 
 public class PromotionController {
     private PromotionModel promotionModel = new PromotionModel();
@@ -48,6 +49,8 @@ public class PromotionController {
 
     private void printReservationResult() {
         OutputView.printResultTitle();
+        Map<String, Integer> customerOrderList = promotionModel.transferOrderList();
+        OutputView.printOrderList(customerOrderList);
     }
 
 }
