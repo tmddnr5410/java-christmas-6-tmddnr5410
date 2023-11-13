@@ -51,6 +51,9 @@ public class PromotionController {
         OutputView.printResultTitle();
         Map<String, Integer> customerOrderList = promotionModel.transferOrderList();
         OutputView.printOrderList(customerOrderList);
+
+        Integer customerTotalPrice = promotionModel.transferTotalPrice();
+        OutputView.printTotalPrice(customerTotalPrice);
     }
 
 }

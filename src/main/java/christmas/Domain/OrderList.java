@@ -29,7 +29,19 @@ public class OrderList {
         }
     }
 
-    public Map<String, Integer> getMenuInfo() {
+    public Integer getTotalPrice() {
+        Integer totalPrice = 0;
+
+        for (EnumMap.Entry<Menu, Integer> entry : orderList.entrySet()) {
+            Menu menu = entry.getKey();
+            Integer quantity = entry.getValue();
+
+            totalPrice += menu.getPrice() * quantity;
+        }
+        return totalPrice;
+    }
+
+    public Map<String, Integer> getOrderQuantity() {
         Map<String, Integer> menuInfo = new HashMap<>();
 
         for (Map.Entry<Menu, Integer> entry : orderList.entrySet()) {

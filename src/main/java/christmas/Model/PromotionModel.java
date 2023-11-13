@@ -36,7 +36,11 @@ public class PromotionModel {
     }
 
     public Map<String, Integer> transferOrderList() {
-        return orderList.getMenuInfo();
+        return orderList.getOrderQuantity();
+    }
+
+    public Integer transferTotalPrice() {
+        return orderList.getTotalPrice();
     }
 
     private void addToOrderList(String order) {
