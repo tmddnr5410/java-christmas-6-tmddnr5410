@@ -28,7 +28,7 @@ public class PromotionController {
 
     private void saveMenu() {
         String input = InputView.readMenu();
-        promotionModel.initOrder(input);
+        promotionModel.processOrder(input);
     }
 
 

@@ -21,23 +21,28 @@ public class PromotionModel {
         date = new Date(input);
     }
 
-    public void initOrder(String input) {
+    public void processOrder(String input) {
         orderList = new OrderList();
 
         List<String> orders = Arrays.asList(input.split(ORDER_DIVIDE_POINT));
         validateOrderSplit(orders);
 
         for (String order : orders) {
-            List<String> orderComponents = Arrays.asList(order.split(MENU_DIVIDE_POINT));
-
-            validateorderComponents(orderComponents);
-
-            String menu = orderComponents.get(ORDER_MENU_INDEX);
-            String quantity = orderComponents.get(ORDER_QUANTITY_INDEX);
-
-            orderList.order(menu, Integer.parseInt(quantity));
+            addToOrderList(order);
         }
+        
         orderList.validateSelf();
+    }
+
+    private void addToOrderList(String order) {
+        List<String> orderComponents = Arrays.asList(order.split(MENU_DIVIDE_POINT));
+
+        validateorderComponents(orderComponents);
+
+        String menu = orderComponents.get(ORDER_MENU_INDEX);
+        String quantity = orderComponents.get(ORDER_QUANTITY_INDEX);
+
+        orderList.order(menu, Integer.parseInt(quantity));
     }
 
     private void validateOrderSplit(List<String> orders) {
