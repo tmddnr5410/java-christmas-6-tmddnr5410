@@ -7,7 +7,12 @@ import christmas.View.OutputView;
 public class PromotionController {
     private PromotionModel promotionModel = new PromotionModel();
 
-    public void startReserve() {
+    public void startReservation() {
+        makeReservation();
+        printReservationResult();
+    }
+
+    private void makeReservation() {
         OutputView.printWelcome();
         saveDate();
         saveOrder();
@@ -41,7 +46,7 @@ public class PromotionController {
         }
     }
 
-    private void calculateReservationResult() {
+    private void printReservationResult() {
         OutputView.printResultTitle();
     }
 
