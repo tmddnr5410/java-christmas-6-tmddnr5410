@@ -4,6 +4,7 @@ import christmas.Constant.ErrorMessage;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class OrderList {
     private static Integer MIN_MENU_QUANTITY = 1;
@@ -49,12 +50,25 @@ public class OrderList {
         Map<String, Integer> menuInfo = new HashMap<>();
 
         for (Map.Entry<Menu, Integer> entry : orderList.entrySet()) {
-            if (entry.getValue() > 0) {
+            if (entry.getValue() >= MIN_MENU_QUANTITY) {
                 menuInfo.put(entry.getKey().getName(), entry.getValue());
             }
         }
 
         return menuInfo;
+    }
+
+    public Integer getQuantityOfMenuType(String menuType) {
+        Integer totalQuantity = 0;
+        
+        for (Map.Entry<Menu, Integer> entry : orderList.entrySet()) {
+            String eachMenuType = entry.getKey().getType();
+
+            if (Objects.equals(eachMenuType, menuType)) {
+                totalQuantity += entry.getValue();
+            }
+        }
+        return totalQuantity;
     }
 
     private boolean isOnlyBeverage() {

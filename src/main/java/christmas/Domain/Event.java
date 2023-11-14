@@ -9,6 +9,11 @@ public class Event {
     private static final Integer CHRISTMAS_EVENT_END_DAY = 25;
     private static final Integer CHRISTMAS_DISCOUNT_DEFAULT = 1000;
     private static final Integer CHRISTMAS_DISCOUNT_BONUS = 100;
+    private static final Integer SPECIAL_DISCOUNT_BONUS = 1000;
+    private static final Integer WEEK_DISCOUNT_BONUS = 2023;
+    private static final String WEEKEND_DISCOUNT_TYPE = MenuType.MAIN;
+    private static final String WEEKDAY_DISCOUNT_TYPE = MenuType.DESERT;
+
 
     private EnumMap<EventType, Integer> benefitDetail;
 
@@ -39,6 +44,21 @@ public class Event {
 
     private Integer christmasDDayBonus(Date date) {
         return CHRISTMAS_DISCOUNT_DEFAULT + CHRISTMAS_DISCOUNT_BONUS * (date.getDate() - 1);
+    }
+
+    public String getWeekEventMenuType(Date date) {
+        if (date.isWEEKEND()) {
+            return WEEKEND_DISCOUNT_TYPE;
+        }
+        return WEEKDAY_DISCOUNT_TYPE;
+    }
+
+    public void calculateWeekBonus(Date date, Integer amount) {
+        if (date.isWEEKEND()) {
+            benefitDetail.put(EventType.WEEKEND, amount * WEEK_DISCOUNT_BONUS);
+            return;
+        }
+        benefitDetail.put(EventType.WEEKDAY, amount * WEEK_DISCOUNT_BONUS);
     }
 
 

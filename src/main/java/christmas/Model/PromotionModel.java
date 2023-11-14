@@ -46,6 +46,8 @@ public class PromotionModel {
 
     public void processEvent() {
         event.calculateChristmasDDayBonus(date);
+        processWeekEvent();
+
     }
 
     public Map<String, Integer> transferOrderList() {
@@ -58,6 +60,13 @@ public class PromotionModel {
 
     public Map<String, Integer> transferAllBenefit() {
         return event.getAllBenefit();
+    }
+
+    private void processWeekEvent() {
+        String weekBonusMenuType = event.getWeekEventMenuType(date);
+        Integer weekBonusQuantity = orderList.getQuantityOfMenuType(weekBonusMenuType);
+        event.calculateWeekBonus(date, weekBonusQuantity);
+
     }
 
     private void addToOrderList(String order) {

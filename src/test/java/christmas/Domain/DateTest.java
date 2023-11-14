@@ -15,4 +15,19 @@ public class DateTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.OUT_DATE_RANGE);
     }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 15, 16, 29, 30})
+    public void 날짜가_주말인지_확인(Integer date) {
+        Date testDate = new Date(date);
+        Assertions.assertThat(testDate.isWEEKEND()).isTrue();
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {3, 11, 19, 20, 28})
+    public void 날짜가_평일인지_확인(Integer date) {
+        Date testDate = new Date(date);
+        Assertions.assertThat(testDate.isWEEKEND()).isFalse();
+    }
+
 }
