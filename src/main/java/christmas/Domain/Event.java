@@ -11,17 +11,25 @@ public class Event {
     private static final Integer CHRISTMAS_BENEFIT = 100;
     private static final Integer SPECIAL_BENEFIT = 1000;
     private static final Integer WEEK_BENEFIT = 2023;
+    private static final Integer GIFT_MIN_PRICE = 120000;
+    private static final Integer GIFT_DEFAULT_AMOUNT = 1;
     private static final String WEEKEND_BENEFIT_MENU_TYPE = MenuType.MAIN;
     private static final String WEEKDAY_BENEFIT_MENU_TYPE = MenuType.DESERT;
-
+    private static final Menu GIFT = Menu.CHAMPAGNE;
 
     private EnumMap<EventType, Integer> benefitDetail;
+    private EnumMap<Menu, Integer> gifts;
 
     public Event() {
         benefitDetail = new EnumMap<>(EventType.class);
+
         for (EventType eventType : EventType.values()) {
             benefitDetail.put(eventType, 0);
         }
+
+        gifts = new EnumMap<>(Menu.class);
+
+        gifts.put(GIFT, 0);
     }
 
     public Map<String, Integer> getAllBenefit() {
@@ -34,6 +42,12 @@ public class Event {
             allBenefit.put(eventType.getEventName(), amount);
         }
         return allBenefit;
+    }
+
+    public void calculateGift(Integer totalPrice) {
+        if (totalPrice >= GIFT_MIN_PRICE) {
+            gifts.put(GIFT, GIFT_DEFAULT_AMOUNT);
+        }
     }
 
     public void calculateChristmasDDayBonus(Date date) {
@@ -53,6 +67,18 @@ public class Event {
         return WEEKDAY_BENEFIT_MENU_TYPE;
     }
 
+    public Map<String, Integer> getGifts() {
+        Map<String, Integer> allGifts = new HashMap<>();
+
+        for (Map.Entry<Menu, Integer> entry : gifts.entrySet()) {
+            Menu gift = entry.getKey();
+            Integer quantity = entry.getValue();
+            allGifts.put(gift.getName(), quantity);
+        }
+
+        return allGifts;
+    }
+
     public void calculateWeekBonus(Date date, Integer amount) {
         if (date.isWEEKEND()) {
             benefitDetail.put(EventType.WEEKEND, amount * WEEK_BENEFIT);
@@ -67,5 +93,10 @@ public class Event {
         }
     }
 
+    public void calculateGiftBonus(Integer totalPrice) {
+        if (totalPrice >= GIFT_MIN_PRICE) {
+            benefitDetail.put(EventType.GIFT, GIFT.getPrice());
+        }
+    }
 
 }

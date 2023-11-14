@@ -11,6 +11,9 @@ public class OutputMessage {
     public static final String TOTAL_PRICE_TITLE = "<할인 전 총주문 금액>";
     public static final String TOTAL_PRICE_FORM = "%,d원";
 
+
+    public static final String GIFT_TITLE = "<증정 메뉴>";
+
     public static final String TOTAL_BENEFIT_TITLE = "<혜택 내역>";
     public static final String TOTAL_BENEFIT_NONE = "없음";
 

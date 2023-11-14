@@ -47,6 +47,7 @@ public class PromotionModel {
 
     public void processEvent() {
         Integer totalPrice = orderList.getTotalPrice();
+        event.calculateGift(totalPrice);
         if (EVENT_MIN_AMOUNT < totalPrice) {
             event.calculateChristmasDDayBonus(date);
             processWeekEvent();
@@ -56,6 +57,10 @@ public class PromotionModel {
 
     public Map<String, Integer> transferOrderList() {
         return orderList.getOrderQuantity();
+    }
+
+    public Map<String, Integer> transferTotalGifts() {
+        return event.getGifts();
     }
 
     public Integer transferTotalPrice() {

@@ -6,13 +6,13 @@ import java.util.Map;
 public class OutputView {
     public static void printOrderList(Map<String, Integer> orderList) {
         System.out.println(OutputMessage.ORDERLIST_TITLE);
+        printMenuQuantityList(orderList);
+        System.out.println();
+    }
 
-        for (Map.Entry<String, Integer> entry : orderList.entrySet()) {
-            String menuName = entry.getKey();
-            Integer quantity = entry.getValue();
-            printOrder(menuName, quantity);
-        }
-
+    public static void printGiftList(Map<String, Integer> giftList) {
+        System.out.println(OutputMessage.GIFT_TITLE);
+        printEventList(giftList);
         System.out.println();
     }
 
@@ -42,6 +42,16 @@ public class OutputView {
         System.out.println();
     }
 
+    private static void printEventList(Map<String, Integer> events) {
+        for (Integer value : events.values()) {
+            if (value == 0) {
+                printNoGift();
+                return;
+            }
+        }
+        printMenuQuantityList(events);
+    }
+
     private static String formattedAllBenefit(Map<String, Integer> allBenefit) {
         StringBuilder benefitList = new StringBuilder();
 
@@ -62,7 +72,15 @@ public class OutputView {
         return OutputMessage.NO_BENEFIT_FORM;
     }
 
-    private static void printOrder(String menuName, Integer quantity) {
+    private static void printMenuQuantityList(Map<String, Integer> menuList) {
+        for (Map.Entry<String, Integer> entry : menuList.entrySet()) {
+            String menuName = entry.getKey();
+            Integer quantity = entry.getValue();
+            printMenuQuantity(menuName, quantity);
+        }
+    }
+
+    private static void printMenuQuantity(String menuName, Integer quantity) {
         System.out.printf(OutputMessage.ORDERLIST_FORM, menuName, quantity);
         System.out.println();
     }
@@ -71,4 +89,7 @@ public class OutputView {
         return String.format(OutputMessage.TOTAL_PRICE_FORM, price);
     }
 
+    private static void printNoGift() {
+        System.out.println(OutputMessage.TOTAL_BENEFIT_NONE);
+    }
 }

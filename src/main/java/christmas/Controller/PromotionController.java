@@ -60,6 +60,10 @@ public class PromotionController {
         OutputView.printTotalPrice(customerTotalPrice);
 
         promotionModel.processEvent();
+
+        Map<String, Integer> allGifts = promotionModel.transferTotalGifts();
+        OutputView.printGiftList(allGifts);
+
         Map<String, Integer> allBenefit = promotionModel.transferAllBenefit();
         OutputView.printTotalBenefit(allBenefit);
     }
