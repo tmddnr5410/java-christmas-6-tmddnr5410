@@ -10,4 +10,13 @@ public class OutputMessage {
 
     public static final String TOTAL_PRICE_TITLE = "<할인 전 총주문 금액>";
     public static final String TOTAL_PRICE_FORM = "%,d원";
+
+    public static final String TOTAL_BENEFIT_TITLE = "<혜택 내역>";
+    public static final String TOTAL_BENEFIT_NONE = "없음";
+
+    public static final String BENEFIT_FORM = "%s : -%s\n";
+
+    public static final String NO_BENEFIT_FORM = "";
+
+
 }

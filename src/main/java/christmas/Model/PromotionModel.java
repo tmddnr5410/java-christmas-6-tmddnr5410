@@ -2,6 +2,7 @@ package christmas.Model;
 
 import christmas.Constant.ErrorMessage;
 import christmas.Domain.Date;
+import christmas.Domain.Event;
 import christmas.Domain.OrderList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,6 +18,13 @@ public class PromotionModel {
     private Date date;
     private OrderList orderList;
 
+    private Event event;
+
+
+    public PromotionModel() {
+        orderList = new OrderList();
+        event = new Event();
+    }
 
     public void initDate(int input) {
         date = new Date(input);
@@ -24,6 +32,7 @@ public class PromotionModel {
 
     public void processOrder(String input) {
         orderList = new OrderList();
+        event = new Event();
 
         List<String> orders = Arrays.asList(input.split(ORDER_DIVIDE_POINT));
         validateOrderSplit(orders);
@@ -35,12 +44,20 @@ public class PromotionModel {
         orderList.validateSelf();
     }
 
+    public void processEvent() {
+        event.calculateChristmasDDayBonus(date);
+    }
+
     public Map<String, Integer> transferOrderList() {
         return orderList.getOrderQuantity();
     }
 
     public Integer transferTotalPrice() {
         return orderList.getTotalPrice();
+    }
+
+    public Map<String, Integer> transferAllBenefit() {
+        return event.getAllBenefit();
     }
 
     private void addToOrderList(String order) {

@@ -22,12 +22,9 @@ public class OutputView {
         System.out.println();
     }
 
-    private static String formattedPrice(Integer price) {
-        return String.format(OutputMessage.TOTAL_PRICE_FORM, price);
-    }
-
-    public static void printResultTitle() {
-        System.out.println(OutputMessage.RESERVATION_RESULT_TITLE);
+    public static void printTotalBenefit(Map<String, Integer> allBenefit) {
+        System.out.println(OutputMessage.TOTAL_BENEFIT_TITLE);
+        System.out.println(formattedAllBenefit(allBenefit));
         System.out.println();
     }
 
@@ -39,8 +36,39 @@ public class OutputView {
         System.out.println(error.getMessage());
     }
 
+
+    public static void printResultTitle() {
+        System.out.println(OutputMessage.RESERVATION_RESULT_TITLE);
+        System.out.println();
+    }
+
+    private static String formattedAllBenefit(Map<String, Integer> allBenefit) {
+        StringBuilder benefitList = new StringBuilder();
+
+        for (Map.Entry<String, Integer> benefit : allBenefit.entrySet()) {
+            benefitList.append(formattedBenefit(benefit.getKey(), benefit.getValue()));
+        }
+
+        if (benefitList.isEmpty()) {
+            benefitList.append(OutputMessage.TOTAL_BENEFIT_NONE);
+        }
+        return benefitList.toString();
+    }
+
+    private static String formattedBenefit(String name, Integer amount) {
+        if (amount > 0) {
+            return String.format(OutputMessage.BENEFIT_FORM, name, formattedPrice(amount));
+        }
+        return OutputMessage.NO_BENEFIT_FORM;
+    }
+
     private static void printOrder(String menuName, Integer quantity) {
         System.out.printf(OutputMessage.ORDERLIST_FORM, menuName, quantity);
         System.out.println();
     }
+
+    private static String formattedPrice(Integer price) {
+        return String.format(OutputMessage.TOTAL_PRICE_FORM, price);
+    }
+
 }

@@ -12,6 +12,10 @@ public class Date {
         date = input;
     }
 
+    public Integer getDate() {
+        return date;
+    }
+
     private void validate(int input) {
         exceptOutRange(input);
     }

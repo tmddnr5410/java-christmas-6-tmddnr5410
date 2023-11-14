@@ -11,6 +11,8 @@ public class PromotionController {
     public void startReservation() {
         makeReservation();
         printReservationResult();
+        showEventResult();
+
     }
 
     private void makeReservation() {
@@ -51,9 +53,15 @@ public class PromotionController {
         OutputView.printResultTitle();
         Map<String, Integer> customerOrderList = promotionModel.transferOrderList();
         OutputView.printOrderList(customerOrderList);
+    }
 
+    private void showEventResult() {
         Integer customerTotalPrice = promotionModel.transferTotalPrice();
         OutputView.printTotalPrice(customerTotalPrice);
+
+        promotionModel.processEvent();
+        Map<String, Integer> allBenefit = promotionModel.transferAllBenefit();
+        OutputView.printTotalBenefit(allBenefit);
     }
 
 }
