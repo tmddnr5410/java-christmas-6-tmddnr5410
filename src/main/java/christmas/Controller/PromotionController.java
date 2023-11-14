@@ -67,7 +67,8 @@ public class PromotionController {
         Map<String, Integer> allBenefit = promotionModel.transferAllBenefit();
         OutputView.printTotalBenefit(allBenefit);
 
-        Integer totalBenefitPrice = promotionModel.transferTotalBenefitPrice();
+        Integer totalDiscount = promotionModel.transferTotalBenefitPrice();
+        OutputView.printTotalDiscount(totalDiscount);
     }
 
 }

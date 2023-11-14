@@ -31,7 +31,7 @@ public class OutputView {
 
     public static void printTotalDiscount(Integer totalBenefit) {
         System.out.println(OutputMessage.TOTAL_BENEFIT_PRICE_TITLE);
-        System.out.println();
+        System.out.printf(OutputMessage.TOTAL_PRICE_FORM, totalBenefit);
         System.out.println();
     }
 

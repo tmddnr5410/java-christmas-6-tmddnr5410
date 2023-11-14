@@ -39,7 +39,7 @@ public class Event {
             EventType eventType = entry.getKey();
             int amount = entry.getValue();
 
-            allBenefit.put(eventType.getEventName(), amount * -1);
+            allBenefit.put(eventType.getEventName(), amount);
         }
         return allBenefit;
     }
@@ -61,7 +61,7 @@ public class Event {
 
     public void calculateChristmasDDayBonus(Date date) {
         if (CHRISTMAS_START_DAY < date.getDate() && date.getDate() < CHRISTMAS_END_DAY) {
-            benefitDetail.put(EventType.CHRISTMAS_D_DAY, christmasDDayBonus(date));
+            benefitDetail.put(EventType.CHRISTMAS_D_DAY, christmasDDayBonus(date) * -1);
         }
     }
 
@@ -91,15 +91,15 @@ public class Event {
 
     public void calculateWeekBonus(Date date, Integer amount) {
         if (date.isWEEKEND()) {
-            benefitDetail.put(EventType.WEEKEND, amount * WEEK_BENEFIT);
+            benefitDetail.put(EventType.WEEKEND, amount * WEEK_BENEFIT * -1);
             return;
         }
-        benefitDetail.put(EventType.WEEKDAY, amount * WEEK_BENEFIT);
+        benefitDetail.put(EventType.WEEKDAY, amount * WEEK_BENEFIT * -1);
     }
 
     public void calculateSpecialBonus(Date date) {
         if (date.isStar()) {
-            benefitDetail.put(EventType.SPECIAL, SPECIAL_BENEFIT);
+            benefitDetail.put(EventType.SPECIAL, SPECIAL_BENEFIT * -1);
         }
     }
 
@@ -111,7 +111,7 @@ public class Event {
 
             totalPrice += menu.getPrice() * amount;
         }
-        benefitDetail.put(EventType.GIFT, totalPrice);
+        benefitDetail.put(EventType.GIFT, totalPrice * -1);
     }
 
 }

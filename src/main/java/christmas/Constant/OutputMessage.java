@@ -20,6 +20,6 @@ public class OutputMessage {
     public static final String BENEFIT_FORM = "%s : %s\n";
     public static final String NO_BENEFIT_FORM = "";
 
-    public static final String TOTAL_BENEFIT_PRICE_TITLE = "<총혜택 금액";
+    public static final String TOTAL_BENEFIT_PRICE_TITLE = "<총혜택 금액>";
 
 }
