@@ -78,6 +78,7 @@ public class Event {
 
         return allGifts;
     }
+    
 
     public void calculateWeekBonus(Date date, Integer amount) {
         if (date.isWEEKEND()) {
@@ -93,10 +94,15 @@ public class Event {
         }
     }
 
-    public void calculateGiftBonus(Integer totalPrice) {
-        if (totalPrice >= GIFT_MIN_PRICE) {
-            benefitDetail.put(EventType.GIFT, GIFT.getPrice());
+    public void calculateGiftBonus() {
+        Integer totalPrice = 0;
+        for (Map.Entry<Menu, Integer> entry : gifts.entrySet()) {
+            Menu menu = entry.getKey();
+            int amount = entry.getValue();
+
+            totalPrice += menu.getPrice() * amount;
         }
+        benefitDetail.put(EventType.GIFT, totalPrice);
     }
 
 }

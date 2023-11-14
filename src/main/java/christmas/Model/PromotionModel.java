@@ -52,6 +52,7 @@ public class PromotionModel {
             event.calculateChristmasDDayBonus(date);
             processWeekEvent();
             event.calculateSpecialBonus(date);
+            event.calculateGiftBonus();
         }
     }
 
