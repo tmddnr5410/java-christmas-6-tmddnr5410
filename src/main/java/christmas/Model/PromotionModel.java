@@ -47,6 +47,7 @@ public class PromotionModel {
     public void processEvent() {
         event.calculateChristmasDDayBonus(date);
         processWeekEvent();
+        event.calculateSpecialBonus(date);
 
     }
 
@@ -66,7 +67,6 @@ public class PromotionModel {
         String weekBonusMenuType = event.getWeekEventMenuType(date);
         Integer weekBonusQuantity = orderList.getQuantityOfMenuType(weekBonusMenuType);
         event.calculateWeekBonus(date, weekBonusQuantity);
-
     }
 
     private void addToOrderList(String order) {

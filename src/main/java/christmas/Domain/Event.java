@@ -61,5 +61,11 @@ public class Event {
         benefitDetail.put(EventType.WEEKDAY, amount * WEEK_DISCOUNT_BONUS);
     }
 
+    public void calculateSpecialBonus(Date date) {
+        if (date.isStar()) {
+            benefitDetail.put(EventType.SPECIAL, SPECIAL_DISCOUNT_BONUS);
+        }
+    }
+
 
 }

@@ -30,4 +30,10 @@ public class DateTest {
         Assertions.assertThat(testDate.isWEEKEND()).isFalse();
     }
 
+    @ParameterizedTest
+    @ValueSource(ints = {3, 17, 25, 31})
+    public void 날짜가_별인지_확인(Integer date) {
+        Date testDate = new Date(date);
+        Assertions.assertThat(testDate.isStar()).isTrue();
+    }
 }

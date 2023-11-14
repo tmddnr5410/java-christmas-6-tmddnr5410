@@ -9,6 +9,8 @@ public class Date {
     private final Integer A_WEEK = 7;
     private static final Date FRIDAY_PATTERN = new Date(1);
     private static final Date SATURDAY_PATTERN = new Date(2);
+    private static final Date SUNDAY_PATTERN = new Date(3);
+    private static final Date CHRISTMAS = new Date(25);
 
     private Integer date;
 
@@ -31,8 +33,20 @@ public class Date {
         }
     }
 
+    public boolean isStar() {
+        return isSunday() || isChristmas();
+    }
+
     public boolean isWEEKEND() {
         return isFriday() || isSaturday();
+    }
+
+    private boolean isChristmas() {
+        return Objects.equals(date, CHRISTMAS.getDate());
+    }
+
+    private boolean isSunday() {
+        return Objects.equals(date % A_WEEK, SUNDAY_PATTERN.getDate());
     }
 
     private boolean isFriday() {
