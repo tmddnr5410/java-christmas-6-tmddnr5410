@@ -56,8 +56,8 @@ public class PromotionController {
     }
 
     private void showEventResult() {
-        Integer customerTotalPrice = promotionModel.transferTotalPrice();
-        OutputView.printTotalPrice(customerTotalPrice);
+        Integer totalPrice = promotionModel.transferTotalPrice();
+        OutputView.printTotalPrice(totalPrice);
 
         promotionModel.processEvent();
 
@@ -66,6 +66,8 @@ public class PromotionController {
 
         Map<String, Integer> allBenefit = promotionModel.transferAllBenefit();
         OutputView.printTotalBenefit(allBenefit);
+
+        Integer totalBenefitPrice = promotionModel.transferTotalBenefitPrice();
     }
 
 }

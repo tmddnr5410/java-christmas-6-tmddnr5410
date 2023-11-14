@@ -39,10 +39,19 @@ public class Event {
             EventType eventType = entry.getKey();
             int amount = entry.getValue();
 
-            allBenefit.put(eventType.getEventName(), amount);
+            allBenefit.put(eventType.getEventName(), amount * -1);
         }
         return allBenefit;
     }
+
+    public Integer getTotalBenefit() {
+        Integer totalBenefit = 0;
+        for (Integer benefit : benefitDetail.values()) {
+            totalBenefit += benefit;
+        }
+        return totalBenefit;
+    }
+
 
     public void calculateGift(Integer totalPrice) {
         if (totalPrice >= GIFT_MIN_PRICE) {
@@ -78,7 +87,7 @@ public class Event {
 
         return allGifts;
     }
-    
+
 
     public void calculateWeekBonus(Date date, Integer amount) {
         if (date.isWEEKEND()) {

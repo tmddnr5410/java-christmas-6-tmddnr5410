@@ -68,6 +68,10 @@ public class PromotionModel {
         return orderList.getTotalPrice();
     }
 
+    public Integer transferTotalBenefitPrice() {
+        return event.getTotalBenefit();
+    }
+
     public Map<String, Integer> transferAllBenefit() {
         return event.getAllBenefit();
     }

@@ -28,6 +28,13 @@ public class OutputView {
         System.out.println();
     }
 
+
+    public static void printTotalDiscount(Integer totalBenefit) {
+        System.out.println(OutputMessage.TOTAL_BENEFIT_PRICE_TITLE);
+        System.out.println();
+        System.out.println();
+    }
+
     public static void printWelcome() {
         System.out.println(OutputMessage.RESERVATION_START_TITLE);
     }
@@ -66,7 +73,7 @@ public class OutputView {
     }
 
     private static String formattedBenefit(String name, Integer amount) {
-        if (amount > 0) {
+        if (amount < 0) {
             return String.format(OutputMessage.BENEFIT_FORM, name, formattedPrice(amount));
         }
         return OutputMessage.NO_BENEFIT_FORM;
