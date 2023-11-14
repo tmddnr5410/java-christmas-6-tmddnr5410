@@ -5,14 +5,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Event {
-    private static final Integer CHRISTMAS_EVENT_START_DAY = 1;
-    private static final Integer CHRISTMAS_EVENT_END_DAY = 25;
-    private static final Integer CHRISTMAS_DISCOUNT_DEFAULT = 1000;
-    private static final Integer CHRISTMAS_DISCOUNT_BONUS = 100;
-    private static final Integer SPECIAL_DISCOUNT_BONUS = 1000;
-    private static final Integer WEEK_DISCOUNT_BONUS = 2023;
-    private static final String WEEKEND_DISCOUNT_TYPE = MenuType.MAIN;
-    private static final String WEEKDAY_DISCOUNT_TYPE = MenuType.DESERT;
+    private static final Integer CHRISTMAS_START_DAY = 1;
+    private static final Integer CHRISTMAS_END_DAY = 25;
+    private static final Integer CHRISTMAS_BENEFIT_DEFAULT = 1000;
+    private static final Integer CHRISTMAS_BENEFIT = 100;
+    private static final Integer SPECIAL_BENEFIT = 1000;
+    private static final Integer WEEK_BENEFIT = 2023;
+    private static final String WEEKEND_BENEFIT_MENU_TYPE = MenuType.MAIN;
+    private static final String WEEKDAY_BENEFIT_MENU_TYPE = MenuType.DESERT;
 
 
     private EnumMap<EventType, Integer> benefitDetail;
@@ -37,33 +37,33 @@ public class Event {
     }
 
     public void calculateChristmasDDayBonus(Date date) {
-        if (CHRISTMAS_EVENT_START_DAY < date.getDate() && date.getDate() < CHRISTMAS_EVENT_END_DAY) {
+        if (CHRISTMAS_START_DAY < date.getDate() && date.getDate() < CHRISTMAS_END_DAY) {
             benefitDetail.put(EventType.CHRISTMAS_D_DAY, christmasDDayBonus(date));
         }
     }
 
     private Integer christmasDDayBonus(Date date) {
-        return CHRISTMAS_DISCOUNT_DEFAULT + CHRISTMAS_DISCOUNT_BONUS * (date.getDate() - 1);
+        return CHRISTMAS_BENEFIT_DEFAULT + CHRISTMAS_BENEFIT * (date.getDate() - 1);
     }
 
     public String getWeekEventMenuType(Date date) {
         if (date.isWEEKEND()) {
-            return WEEKEND_DISCOUNT_TYPE;
+            return WEEKEND_BENEFIT_MENU_TYPE;
         }
-        return WEEKDAY_DISCOUNT_TYPE;
+        return WEEKDAY_BENEFIT_MENU_TYPE;
     }
 
     public void calculateWeekBonus(Date date, Integer amount) {
         if (date.isWEEKEND()) {
-            benefitDetail.put(EventType.WEEKEND, amount * WEEK_DISCOUNT_BONUS);
+            benefitDetail.put(EventType.WEEKEND, amount * WEEK_BENEFIT);
             return;
         }
-        benefitDetail.put(EventType.WEEKDAY, amount * WEEK_DISCOUNT_BONUS);
+        benefitDetail.put(EventType.WEEKDAY, amount * WEEK_BENEFIT);
     }
 
     public void calculateSpecialBonus(Date date) {
         if (date.isStar()) {
-            benefitDetail.put(EventType.SPECIAL, SPECIAL_DISCOUNT_BONUS);
+            benefitDetail.put(EventType.SPECIAL, SPECIAL_BENEFIT);
         }
     }
 
