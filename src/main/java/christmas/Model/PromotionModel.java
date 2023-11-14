@@ -15,6 +15,7 @@ public class PromotionModel {
     private final Integer MENU_DIVIDE_SIZE = 2;
     private final String ORDER_DIVIDE_POINT = ",";
     private final String MENU_DIVIDE_POINT = "-";
+    private final Integer EVENT_MIN_AMOUNT = 10000;
     private Date date;
     private OrderList orderList;
 
@@ -45,10 +46,12 @@ public class PromotionModel {
     }
 
     public void processEvent() {
-        event.calculateChristmasDDayBonus(date);
-        processWeekEvent();
-        event.calculateSpecialBonus(date);
-
+        Integer totalPrice = orderList.getTotalPrice();
+        if (EVENT_MIN_AMOUNT < totalPrice) {
+            event.calculateChristmasDDayBonus(date);
+            processWeekEvent();
+            event.calculateSpecialBonus(date);
+        }
     }
 
     public Map<String, Integer> transferOrderList() {
