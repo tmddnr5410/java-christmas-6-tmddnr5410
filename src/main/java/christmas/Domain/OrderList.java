@@ -46,7 +46,7 @@ public class OrderList {
         return totalPrice;
     }
 
-    public Map<String, Integer> getOrderQuantity() {
+    public Map<String, Integer> getMenuQuantity() {
         Map<String, Integer> menuInfo = new HashMap<>();
 
         for (Map.Entry<Menu, Integer> entry : orderList.entrySet()) {
@@ -60,7 +60,7 @@ public class OrderList {
 
     public Integer getQuantityOfMenuType(String menuType) {
         Integer totalQuantity = 0;
-        
+
         for (Map.Entry<Menu, Integer> entry : orderList.entrySet()) {
             String eachMenuType = entry.getKey().getType();
 

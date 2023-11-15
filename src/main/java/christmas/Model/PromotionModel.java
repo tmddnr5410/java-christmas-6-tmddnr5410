@@ -41,7 +41,6 @@ public class PromotionModel {
         for (String order : orders) {
             addToOrderList(order);
         }
-
         orderList.validateSelf();
     }
 
@@ -57,8 +56,20 @@ public class PromotionModel {
         }
     }
 
-    public Map<String, Integer> transferOrderList() {
-        return orderList.getOrderQuantity();
+    public Integer getFinalPayment() {
+        return orderList.getTotalPrice() + event.getTotalDiscount();
+    }
+
+    public String getEventBadgeName() {
+        return event.getBadgeName();
+    }
+
+    public Map<String, Integer> transferTotalBenefit() {
+        return event.getTotalBenefit();
+    }
+
+    public Map<String, Integer> transferOrder() {
+        return orderList.getMenuQuantity();
     }
 
     public Map<String, Integer> transferTotalGifts() {
@@ -69,21 +80,10 @@ public class PromotionModel {
         return orderList.getTotalPrice();
     }
 
-    public Integer transferTotalBenefitPrice() {
-        return event.getTotalBenefit();
+    public Integer transferBenefitPrice() {
+        return event.getBenefitPrice();
     }
 
-    public Integer getFinalPayment() {
-        return orderList.getTotalPrice() + event.getTotalDiscount();
-    }
-
-    public String getEventBadgeName() {
-        return event.getBadgeName();
-    }
-
-    public Map<String, Integer> transferAllBenefit() {
-        return event.getAllBenefit();
-    }
 
     private void processWeekEvent() {
         String weekBonusMenuType = event.getWeekEventMenuType(date);
@@ -94,7 +94,7 @@ public class PromotionModel {
     private void addToOrderList(String order) {
         List<String> orderComponents = Arrays.asList(order.split(MENU_DIVIDE_POINT));
 
-        validateorderComponents(orderComponents);
+        validateOrderComponents(orderComponents);
 
         String menu = orderComponents.get(ORDER_MENU_INDEX);
         String quantity = orderComponents.get(ORDER_QUANTITY_INDEX);
@@ -106,7 +106,7 @@ public class PromotionModel {
         exceptOrderSplit(orders);
     }
 
-    private void validateorderComponents(List<String> order) {
+    private void validateOrderComponents(List<String> order) {
         exceptInvalidDivideSize(order);
         exceptNotInteger(order.get(ORDER_QUANTITY_INDEX));
     }

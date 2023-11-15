@@ -20,34 +20,32 @@ public class Event {
 
     private EnumMap<EventType, Integer> benefitDetail;
     private EnumMap<Menu, Integer> gifts;
-
     private Badge badge;
 
     public Event() {
         benefitDetail = new EnumMap<>(EventType.class);
-
-        badge = Badge.NONE;
         for (EventType eventType : EventType.values()) {
             benefitDetail.put(eventType, 0);
         }
 
         gifts = new EnumMap<>(Menu.class);
-
         gifts.put(GIFT, 0);
+
+        badge = Badge.NONE;
     }
 
-    public Map<String, Integer> getAllBenefit() {
+    public Map<String, Integer> getTotalBenefit() {
         Map<String, Integer> allBenefit = new LinkedHashMap<>();
         for (Map.Entry<EventType, Integer> entry : benefitDetail.entrySet()) {
             EventType eventType = entry.getKey();
             int amount = entry.getValue();
-            
+
             allBenefit.put(eventType.getEventName(), amount);
         }
         return allBenefit;
     }
 
-    public Integer getTotalBenefit() {
+    public Integer getBenefitPrice() {
         Integer totalBenefit = 0;
         for (Integer benefit : benefitDetail.values()) {
             totalBenefit += benefit;
@@ -56,7 +54,7 @@ public class Event {
     }
 
     public void calculateEventBadge() {
-        badge = Badge.getBadgeByBenefit(Math.abs(getTotalBenefit()));
+        badge = Badge.getBadgeByBenefit(Math.abs(getBenefitPrice()));
     }
 
     public Integer getTotalDiscount() {

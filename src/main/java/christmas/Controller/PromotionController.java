@@ -15,7 +15,7 @@ public class PromotionController {
         showReservationResult();
 
         showEventResult();
-        
+
         showPaymentResult();
     }
 
@@ -47,8 +47,9 @@ public class PromotionController {
 
     private void showReservationResult() {
         OutputView.printResultTitle();
-        Map<String, Integer> customerOrderList = promotionModel.transferOrderList();
-        OutputView.printMenuSheet(OutputMessage.ORDERLIST_TITLE, customerOrderList);
+
+        Map<String, Integer> customerOrder = promotionModel.transferOrder();
+        OutputView.printMenuSheet(OutputMessage.ORDERLIST_TITLE, customerOrder);
 
         Integer totalPrice = promotionModel.transferTotalPrice();
         OutputView.printPriceSheet(OutputMessage.TOTAL_PRICE_TITLE, totalPrice);
@@ -60,13 +61,13 @@ public class PromotionController {
         Map<String, Integer> allGifts = promotionModel.transferTotalGifts();
         OutputView.printMenuSheet(OutputMessage.GIFT_TITLE, allGifts);
 
-        Map<String, Integer> allBenefit = promotionModel.transferAllBenefit();
-        OutputView.printBenefitSheet(allBenefit);
+        Map<String, Integer> totalBenefit = promotionModel.transferTotalBenefit();
+        OutputView.printBenefitSheet(totalBenefit);
     }
 
     private void showPaymentResult() {
-        Integer totalDiscount = promotionModel.transferTotalBenefitPrice();
-        OutputView.printPriceSheet(OutputMessage.TOTAL_BENEFIT_PRICE_TITLE, totalDiscount);
+        Integer benefitPrice = promotionModel.transferBenefitPrice();
+        OutputView.printPriceSheet(OutputMessage.TOTAL_BENEFIT_PRICE_TITLE, benefitPrice);
 
         Integer finalPayment = promotionModel.getFinalPayment();
         OutputView.printPriceSheet(OutputMessage.FINAL_PAYMENT_TITLE, finalPayment);
