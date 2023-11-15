@@ -29,7 +29,7 @@ public class Date {
 
     private void exceptOutRange(int input) {
         if (input < MinDateRange || MaxDateRange < input) {
-            throw new IllegalArgumentException(ErrorMessage.OUT_DATE_RANGE);
+            throw new IllegalArgumentException(ErrorMessage.INVALIDATE_DATE);
         }
     }
 

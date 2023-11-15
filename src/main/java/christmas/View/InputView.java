@@ -44,7 +44,7 @@ public class InputView {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_INT);
+            throw new IllegalArgumentException(ErrorMessage.INVALIDATE_DATE);
         }
     }
 

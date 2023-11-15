@@ -13,7 +13,7 @@ public class DateTest {
     public void 입력날짜가_범위를_넘는_경우에_대한_예외처리(Integer date) {
         Assertions.assertThatThrownBy(() -> new Date(date))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.OUT_DATE_RANGE);
+                .hasMessage(ErrorMessage.INVALIDATE_DATE);
     }
 
     @ParameterizedTest

@@ -115,7 +115,7 @@ public class PromotionModel {
         try {
             Integer.parseInt(quantity);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.MENU_NOT_INT);
+            throw new IllegalArgumentException(ErrorMessage.INVALIDATE_ORDER);
         }
     }
 

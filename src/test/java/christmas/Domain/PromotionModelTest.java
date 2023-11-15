@@ -43,7 +43,7 @@ public class PromotionModelTest {
         PromotionModel promotionModel = new PromotionModel();
         Assertions.assertThatThrownBy(() -> promotionModel.processOrder(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.MENU_NOT_INT);
+                .hasMessage(ErrorMessage.INVALIDATE_ORDER);
     }
 
     @ParameterizedTest
