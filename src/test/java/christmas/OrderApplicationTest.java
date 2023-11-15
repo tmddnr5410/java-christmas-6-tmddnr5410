@@ -71,6 +71,15 @@ public class OrderApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 총_주문_금액_테스트() {
+        assertSimpleTest(() -> {
+            runException("3", "해산물파스타-3,티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1,타파스-4");
+            assertThat(output()).contains("<할인 전 총주문 금액>",
+                    "269,000원");
+        });
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});
