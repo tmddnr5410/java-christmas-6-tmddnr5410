@@ -2,6 +2,7 @@ package christmas.Domain;
 
 import java.util.EnumMap;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Event {
@@ -36,12 +37,11 @@ public class Event {
     }
 
     public Map<String, Integer> getAllBenefit() {
-        Map<String, Integer> allBenefit = new HashMap<>();
-
+        Map<String, Integer> allBenefit = new LinkedHashMap<>();
         for (Map.Entry<EventType, Integer> entry : benefitDetail.entrySet()) {
             EventType eventType = entry.getKey();
             int amount = entry.getValue();
-
+            
             allBenefit.put(eventType.getEventName(), amount);
         }
         return allBenefit;

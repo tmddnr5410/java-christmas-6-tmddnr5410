@@ -25,7 +25,6 @@ public class OutputView {
     public static void printTotalBenefit(Map<String, Integer> allBenefit) {
         System.out.println(OutputMessage.TOTAL_BENEFIT_TITLE);
         System.out.println(formattedAllBenefit(allBenefit));
-        System.out.println();
     }
 
 
@@ -112,6 +111,6 @@ public class OutputView {
     }
 
     private static void printNoGift() {
-        System.out.println(OutputMessage.TOTAL_BENEFIT_NONE);
+        System.out.print(OutputMessage.TOTAL_BENEFIT_NONE);
     }
 }
