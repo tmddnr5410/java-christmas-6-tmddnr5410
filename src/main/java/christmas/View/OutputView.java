@@ -7,19 +7,15 @@ public class OutputView {
     public static void printOrderList(Map<String, Integer> orderList) {
         System.out.println(OutputMessage.ORDERLIST_TITLE);
         printMenuQuantityList(orderList);
-        System.out.println();
     }
 
     public static void printGiftList(Map<String, Integer> giftList) {
         System.out.println(OutputMessage.GIFT_TITLE);
-        printEventList(giftList);
-        System.out.println();
-    }
-
-    public static void printTotalPrice(Integer price) {
-        System.out.println(OutputMessage.TOTAL_PRICE_TITLE);
-        System.out.println(formattedPrice(price));
-        System.out.println();
+        if (needPrint(giftList)) {
+            printMenuQuantityList(giftList);
+            return;
+        }
+        System.out.println(OutputMessage.TOTAL_BENEFIT_NONE);
     }
 
     public static void printTotalBenefit(Map<String, Integer> allBenefit) {
@@ -29,6 +25,12 @@ public class OutputView {
             return;
         }
         System.out.println(OutputMessage.TOTAL_BENEFIT_NONE);
+    }
+
+    public static void printTotalPrice(Integer price) {
+        System.out.println(OutputMessage.TOTAL_PRICE_TITLE);
+        System.out.println(formattedPrice(price));
+        System.out.println();
     }
 
 
@@ -65,17 +67,6 @@ public class OutputView {
         System.out.println();
     }
 
-    private static void printEventList(Map<String, Integer> events) {
-        for (Integer value : events.values()) {
-            if (value == 0) {
-                printNoGift();
-                return;
-            }
-        }
-        printMenuQuantityList(events);
-    }
-
-
     private static void printBenefits(Map<String, Integer> allBenefit) {
         for (Map.Entry<String, Integer> benefit : allBenefit.entrySet()) {
             if (benefit.getValue() < 0) {
@@ -97,6 +88,7 @@ public class OutputView {
             Integer quantity = entry.getValue();
             printMenuQuantity(menuName, quantity);
         }
+        System.out.println();
     }
 
     private static void printMenuQuantity(String menuName, Integer quantity) {
@@ -110,14 +102,11 @@ public class OutputView {
 
     private static boolean needPrint(Map<String, Integer> allBenefit) {
         for (Integer value : allBenefit.values()) {
-            if (value < 0) {
+            if (value != 0) {
                 return true;
             }
         }
         return false;
     }
 
-    private static void printNoGift() {
-        System.out.print(OutputMessage.TOTAL_BENEFIT_NONE);
-    }
 }
