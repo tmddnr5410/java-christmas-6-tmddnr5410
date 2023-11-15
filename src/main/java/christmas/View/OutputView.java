@@ -33,6 +33,21 @@ public class OutputView {
         System.out.println(OutputMessage.TOTAL_BENEFIT_PRICE_TITLE);
         System.out.printf(OutputMessage.TOTAL_PRICE_FORM, totalBenefit);
         System.out.println();
+        System.out.println();
+    }
+
+
+    public static void printFinalPayment(Integer finalPayment) {
+        System.out.println(OutputMessage.FINAL_PAYMENT_TITLE);
+        System.out.printf(OutputMessage.TOTAL_PRICE_FORM, finalPayment);
+        System.out.println();
+        System.out.println();
+    }
+
+    public static void printBadgeName(String badgeName) {
+        System.out.println(OutputMessage.BADGE_TITLE);
+        System.out.println(badgeName);
+        System.out.println();
     }
 
     public static void printWelcome() {

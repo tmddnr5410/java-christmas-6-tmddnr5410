@@ -21,5 +21,7 @@ public class OutputMessage {
     public static final String NO_BENEFIT_FORM = "";
 
     public static final String TOTAL_BENEFIT_PRICE_TITLE = "<총혜택 금액>";
+    public static final String FINAL_PAYMENT_TITLE = "<할인 후 예상 결제 금액>";
+    public static final String BADGE_TITLE = "<12월 이벤트 배지>";
 
 }

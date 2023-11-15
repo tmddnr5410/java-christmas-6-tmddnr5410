@@ -20,9 +20,12 @@ public class Event {
     private EnumMap<EventType, Integer> benefitDetail;
     private EnumMap<Menu, Integer> gifts;
 
+    private Badge badge;
+
     public Event() {
         benefitDetail = new EnumMap<>(EventType.class);
 
+        badge = Badge.NONE;
         for (EventType eventType : EventType.values()) {
             benefitDetail.put(eventType, 0);
         }
@@ -52,6 +55,22 @@ public class Event {
         return totalBenefit;
     }
 
+    public void calculateEventBadge() {
+        badge = Badge.getBadgeByBenefit(Math.abs(getTotalBenefit()));
+    }
+
+    public Integer getTotalDiscount() {
+        Integer totalDiscount = 0;
+        for (Map.Entry<EventType, Integer> entry : benefitDetail.entrySet()) {
+            EventType eventType = entry.getKey();
+            int amount = entry.getValue();
+
+            if (eventType != EventType.GIFT) {
+                totalDiscount += amount;
+            }
+        }
+        return totalDiscount;
+    }
 
     public void calculateGift(Integer totalPrice) {
         if (totalPrice >= GIFT_MIN_PRICE) {
@@ -88,6 +107,9 @@ public class Event {
         return allGifts;
     }
 
+    public String getBadgeName() {
+        return badge.getName();
+    }
 
     public void calculateWeekBonus(Date date, Integer amount) {
         if (date.isWEEKEND()) {

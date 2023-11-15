@@ -69,6 +69,12 @@ public class PromotionController {
 
         Integer totalDiscount = promotionModel.transferTotalBenefitPrice();
         OutputView.printTotalDiscount(totalDiscount);
+
+        Integer finalPayment = promotionModel.getFinalPayment();
+        OutputView.printFinalPayment(finalPayment);
+
+        String badgeName = promotionModel.getEventBadgeName();
+        OutputView.printBadgeName(badgeName);
     }
 
 }

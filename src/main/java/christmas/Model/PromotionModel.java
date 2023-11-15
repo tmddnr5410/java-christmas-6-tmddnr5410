@@ -53,6 +53,7 @@ public class PromotionModel {
             processWeekEvent();
             event.calculateSpecialBonus(date);
             event.calculateGiftBonus();
+            event.calculateEventBadge();
         }
     }
 
@@ -70,6 +71,14 @@ public class PromotionModel {
 
     public Integer transferTotalBenefitPrice() {
         return event.getTotalBenefit();
+    }
+
+    public Integer getFinalPayment() {
+        return orderList.getTotalPrice() + event.getTotalDiscount();
+    }
+
+    public String getEventBadgeName() {
+        return event.getBadgeName();
     }
 
     public Map<String, Integer> transferAllBenefit() {
