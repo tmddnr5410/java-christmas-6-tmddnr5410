@@ -51,6 +51,25 @@ public class MenuApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 한개_메뉴_테스트() {
+        assertSimpleTest(() -> {
+            runException("3", "티본스테이크-3");
+            assertThat(output()).contains("<주문 메뉴>",
+                    "티본스테이크 3개");
+        });
+    }
+
+    @Test
+    void 여러개_메뉴_테스트() {
+        assertSimpleTest(() -> {
+            runException("3", "해산물파스타-2,레드와인-1,초코케이크-1");
+            assertThat(output()).contains("<주문 메뉴>",
+                    "해산물파스타 2개",
+                    "레드와인 1개",
+                    "초코케이크 1개");
+        });
+    }
 
     @Override
     protected void runMain() {
