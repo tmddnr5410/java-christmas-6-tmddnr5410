@@ -9,14 +9,17 @@ import java.util.Map;
 public class PromotionController {
     private PromotionModel promotionModel = new PromotionModel();
 
-    public void startReservation() {
-        makeReservation();
-        printReservationResult();
-        showEventResult();
+    public void startPromotion() {
+        startReservation();
 
+        showReservationResult();
+
+        showEventResult();
+        
+        showPaymentResult();
     }
 
-    private void makeReservation() {
+    private void startReservation() {
         OutputView.printWelcome();
         saveDate();
         saveOrder();
@@ -42,16 +45,16 @@ public class PromotionController {
         }
     }
 
-    private void printReservationResult() {
+    private void showReservationResult() {
         OutputView.printResultTitle();
         Map<String, Integer> customerOrderList = promotionModel.transferOrderList();
         OutputView.printMenuSheet(OutputMessage.ORDERLIST_TITLE, customerOrderList);
+
+        Integer totalPrice = promotionModel.transferTotalPrice();
+        OutputView.printPriceSheet(OutputMessage.TOTAL_PRICE_TITLE, totalPrice);
     }
 
     private void showEventResult() {
-        Integer totalPrice = promotionModel.transferTotalPrice();
-        OutputView.printPriceSheet(OutputMessage.TOTAL_PRICE_TITLE, totalPrice);
-
         promotionModel.processEvent();
 
         Map<String, Integer> allGifts = promotionModel.transferTotalGifts();
@@ -59,7 +62,9 @@ public class PromotionController {
 
         Map<String, Integer> allBenefit = promotionModel.transferAllBenefit();
         OutputView.printBenefitSheet(allBenefit);
+    }
 
+    private void showPaymentResult() {
         Integer totalDiscount = promotionModel.transferTotalBenefitPrice();
         OutputView.printPriceSheet(OutputMessage.TOTAL_BENEFIT_PRICE_TITLE, totalDiscount);
 
