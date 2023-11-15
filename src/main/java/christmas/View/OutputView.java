@@ -80,8 +80,8 @@ public class OutputView {
         System.out.println(OutputMessage.RESERVATION_START_TITLE);
     }
 
-    public static void printResultTitle() {
-        System.out.println(OutputMessage.RESERVATION_RESULT_TITLE);
+    public static void printResultTitle(Integer date) {
+        System.out.printf(OutputMessage.RESERVATION_RESULT_TITLE, date);
         System.out.println();
     }
 

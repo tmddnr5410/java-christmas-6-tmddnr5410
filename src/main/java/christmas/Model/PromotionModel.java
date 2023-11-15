@@ -83,6 +83,9 @@ public class PromotionModel {
         return event.getBenefitPrice();
     }
 
+    public Integer transferDate() {
+        return date.getDate();
+    }
 
     private void processWeekEvent() {
         String weekBonusMenuType = event.getWeekEventMenuType(date);

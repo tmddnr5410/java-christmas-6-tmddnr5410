@@ -46,7 +46,8 @@ public class PromotionController {
     }
 
     private void showReservationResult() {
-        OutputView.printResultTitle();
+        Integer date = promotionModel.transferDate();
+        OutputView.printResultTitle(date);
 
         Map<String, Integer> customerOrder = promotionModel.transferOrder();
         OutputView.printMenuSheet(OutputMessage.ORDER_TITLE, customerOrder);
