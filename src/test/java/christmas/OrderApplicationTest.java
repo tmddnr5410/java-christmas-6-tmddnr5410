@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class MenuApplicationTest extends NsTest {
+public class OrderApplicationTest extends NsTest {
     @ParameterizedTest
     @ValueSource(strings = {"티본스테이크-3,,,제로콜라-1", "티본스테이크-3,,제로콜라1"})
     void 주문_분리_테스트(String orders) {
