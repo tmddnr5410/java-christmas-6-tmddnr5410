@@ -77,7 +77,7 @@ public class Event {
     }
 
     public void calculateChristmasDDayBonus(Date date) {
-        if (CHRISTMAS_START_DAY < date.getDate() && date.getDate() < CHRISTMAS_END_DAY) {
+        if (CHRISTMAS_START_DAY < date.getDate() && date.getDate() <= CHRISTMAS_END_DAY) {
             benefitDetail.put(EventType.CHRISTMAS_D_DAY, christmasDDayBonus(date) * -1);
         }
     }
