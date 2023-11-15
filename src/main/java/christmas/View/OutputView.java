@@ -24,22 +24,24 @@ public class OutputView {
 
     public static void printTotalBenefit(Map<String, Integer> allBenefit) {
         System.out.println(OutputMessage.TOTAL_BENEFIT_TITLE);
-        System.out.println(formattedAllBenefit(allBenefit));
+        if (needPrint(allBenefit)) {
+            printBenefits(allBenefit);
+            return;
+        }
+        System.out.println(OutputMessage.TOTAL_BENEFIT_NONE);
     }
 
 
     public static void printTotalDiscount(Integer totalBenefit) {
         System.out.println(OutputMessage.TOTAL_BENEFIT_PRICE_TITLE);
-        System.out.printf(OutputMessage.TOTAL_PRICE_FORM, totalBenefit);
-        System.out.println();
+        System.out.println(formattedPrice(totalBenefit));
         System.out.println();
     }
 
 
     public static void printFinalPayment(Integer finalPayment) {
         System.out.println(OutputMessage.FINAL_PAYMENT_TITLE);
-        System.out.printf(OutputMessage.TOTAL_PRICE_FORM, finalPayment);
-        System.out.println();
+        System.out.println(formattedPrice(finalPayment));
         System.out.println();
     }
 
@@ -73,24 +75,20 @@ public class OutputView {
         printMenuQuantityList(events);
     }
 
-    private static String formattedAllBenefit(Map<String, Integer> allBenefit) {
-        StringBuilder benefitList = new StringBuilder();
 
+    private static void printBenefits(Map<String, Integer> allBenefit) {
         for (Map.Entry<String, Integer> benefit : allBenefit.entrySet()) {
-            benefitList.append(formattedBenefit(benefit.getKey(), benefit.getValue()));
+            if (benefit.getValue() < 0) {
+                printBenefit(benefit.getKey(), benefit.getValue());
+            }
         }
-
-        if (benefitList.isEmpty()) {
-            benefitList.append(OutputMessage.TOTAL_BENEFIT_NONE);
-        }
-        return benefitList.toString();
+        System.out.println();
     }
 
-    private static String formattedBenefit(String name, Integer amount) {
+    private static void printBenefit(String name, Integer amount) {
         if (amount < 0) {
-            return String.format(OutputMessage.BENEFIT_FORM, name, formattedPrice(amount));
+            System.out.printf(OutputMessage.BENEFIT_FORM, name, formattedPrice(amount));
         }
-        return OutputMessage.NO_BENEFIT_FORM;
     }
 
     private static void printMenuQuantityList(Map<String, Integer> menuList) {
@@ -108,6 +106,15 @@ public class OutputView {
 
     private static String formattedPrice(Integer price) {
         return String.format(OutputMessage.TOTAL_PRICE_FORM, price);
+    }
+
+    private static boolean needPrint(Map<String, Integer> allBenefit) {
+        for (Integer value : allBenefit.values()) {
+            if (value < 0) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private static void printNoGift() {

@@ -17,7 +17,7 @@ public class OutputMessage {
     public static final String TOTAL_BENEFIT_TITLE = "<혜택 내역>";
     public static final String TOTAL_BENEFIT_NONE = "없음\n";
 
-    public static final String BENEFIT_FORM = "%s : %s\n";
+    public static final String BENEFIT_FORM = "%s: %s\n";
     public static final String NO_BENEFIT_FORM = "";
 
     public static final String TOTAL_BENEFIT_PRICE_TITLE = "<총혜택 금액>";
