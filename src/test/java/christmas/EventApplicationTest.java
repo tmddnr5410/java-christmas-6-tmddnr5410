@@ -80,6 +80,60 @@ public class EventApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 혜택_금액이_없는_경우_테스트() {
+        assertSimpleTest(() -> {
+            runException("29", "초코케이크-1,제로콜라-1");
+            assertThat(output()).contains("<총혜택 금액>",
+                    "0원");
+        });
+    }
+
+    @Test
+    void 혜택_금액_테스트() {
+        assertSimpleTest(() -> {
+            runException("3", "티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1");
+            assertThat(output()).contains("<총혜택 금액>",
+                    "-31,246원");
+        });
+    }
+
+
+    @Test
+    void 뱃지_산타_테스트() {
+        assertSimpleTest(() -> {
+            runException("3", "티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1");
+            assertThat(output()).contains("<12월 이벤트 배지>",
+                    "산타");
+        });
+    }
+
+    @Test
+    void 뱃지_트리_테스트() {
+        assertSimpleTest(() -> {
+            runException("25", "바비큐립-1,초코케이크-3,제로콜라-1");
+            assertThat(output()).contains("<12월 이벤트 배지>",
+                    "트리");
+        });
+    }
+
+    @Test
+    void 뱃지_별_테스트() {
+        assertSimpleTest(() -> {
+            runException("3", "바비큐립-1,초코케이크-2,제로콜라-1");
+            assertThat(output()).contains("<12월 이벤트 배지>",
+                    "별");
+        });
+    }
+
+    @Test
+    void 뱃지_없음_테스트() {
+        assertSimpleTest(() -> {
+            runException("29", "초코케이크-2");
+            assertThat(output()).contains("<12월 이벤트 배지>",
+                    "없음");
+        });
+    }
 
     @Override
     protected void runMain() {
