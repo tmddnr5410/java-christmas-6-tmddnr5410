@@ -1,5 +1,6 @@
 package christmas.Controller;
 
+import christmas.Constant.OutputMessage;
 import christmas.Model.PromotionModel;
 import christmas.View.InputView;
 import christmas.View.OutputView;
@@ -22,59 +23,51 @@ public class PromotionController {
     }
 
     private void saveDate() {
-        boolean errorChecker = true;
-
-        while (errorChecker) {
-            try {
-                int input = InputView.readDate();
-                promotionModel.initDate(input);
-                errorChecker = false;
-            } catch (IllegalArgumentException error) {
-                OutputView.printError(error);
-            }
+        try {
+            int input = InputView.readDate();
+            promotionModel.initDate(input);
+        } catch (IllegalArgumentException error) {
+            OutputView.printError(error);
+            saveDate();
         }
     }
 
     private void saveOrder() {
-        boolean errorChecker = true;
-
-        while (errorChecker) {
-            try {
-                String input = InputView.readMenu();
-                promotionModel.processOrder(input);
-                errorChecker = false;
-            } catch (IllegalArgumentException error) {
-                OutputView.printError(error);
-            }
+        try {
+            String input = InputView.readMenu();
+            promotionModel.processOrder(input);
+        } catch (IllegalArgumentException error) {
+            OutputView.printError(error);
+            saveOrder();
         }
     }
 
     private void printReservationResult() {
         OutputView.printResultTitle();
         Map<String, Integer> customerOrderList = promotionModel.transferOrderList();
-        OutputView.printOrderList(customerOrderList);
+        OutputView.printMenuSheet(OutputMessage.ORDERLIST_TITLE, customerOrderList);
     }
 
     private void showEventResult() {
         Integer totalPrice = promotionModel.transferTotalPrice();
-        OutputView.printTotalPrice(totalPrice);
+        OutputView.printPriceSheet(OutputMessage.TOTAL_PRICE_TITLE, totalPrice);
 
         promotionModel.processEvent();
 
         Map<String, Integer> allGifts = promotionModel.transferTotalGifts();
-        OutputView.printGiftList(allGifts);
+        OutputView.printMenuSheet(OutputMessage.GIFT_TITLE, allGifts);
 
         Map<String, Integer> allBenefit = promotionModel.transferAllBenefit();
-        OutputView.printTotalBenefit(allBenefit);
+        OutputView.printBenefitSheet(allBenefit);
 
         Integer totalDiscount = promotionModel.transferTotalBenefitPrice();
-        OutputView.printTotalDiscount(totalDiscount);
+        OutputView.printPriceSheet(OutputMessage.TOTAL_BENEFIT_PRICE_TITLE, totalDiscount);
 
         Integer finalPayment = promotionModel.getFinalPayment();
-        OutputView.printFinalPayment(finalPayment);
+        OutputView.printPriceSheet(OutputMessage.FINAL_PAYMENT_TITLE, finalPayment);
 
         String badgeName = promotionModel.getEventBadgeName();
-        OutputView.printBadgeName(badgeName);
+        OutputView.printBadgeNameSheet(badgeName);
     }
 
 }
