@@ -100,6 +100,24 @@ public class EventApplicationTest extends NsTest {
 
 
     @Test
+    void 할인이_없는_최종금액_테스트() {
+        assertSimpleTest(() -> {
+            runException("29", "초코케이크-1,제로콜라-1");
+            assertThat(output()).contains("<할인 후 예상 결제 금액>",
+                    "18,000원");
+        });
+    }
+
+    @Test
+    void 할인이_있는_최종금액_테스트() {
+        assertSimpleTest(() -> {
+            runException("29", "티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1");
+            assertThat(output()).contains("<할인 후 예상 결제 금액>",
+                    "137,954원");
+        });
+    }
+
+    @Test
     void 뱃지_산타_테스트() {
         assertSimpleTest(() -> {
             runException("3", "티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1");
