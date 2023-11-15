@@ -11,7 +11,7 @@ public class OutputView {
             printMenuQuantityList(MenuList);
             return;
         }
-        System.out.println(OutputMessage.TOTAL_BENEFIT_NONE);
+        System.out.println(OutputMessage.TOTAL_NONE);
     }
 
     private static void printMenuQuantityList(Map<String, Integer> menuList) {
@@ -24,7 +24,7 @@ public class OutputView {
     }
 
     private static void printMenuQuantity(String menuName, Integer quantity) {
-        System.out.printf(OutputMessage.ORDERLIST_FORM, menuName, quantity);
+        System.out.printf(OutputMessage.ORDER_FORM, menuName, quantity);
         System.out.println();
     }
 
@@ -35,7 +35,7 @@ public class OutputView {
             printBenefits(allBenefit);
             return;
         }
-        System.out.println(OutputMessage.TOTAL_BENEFIT_NONE);
+        System.out.println(OutputMessage.TOTAL_NONE);
     }
 
     private static void printBenefits(Map<String, Integer> allBenefit) {

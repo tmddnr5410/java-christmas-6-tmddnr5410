@@ -49,7 +49,7 @@ public class PromotionController {
         OutputView.printResultTitle();
 
         Map<String, Integer> customerOrder = promotionModel.transferOrder();
-        OutputView.printMenuSheet(OutputMessage.ORDERLIST_TITLE, customerOrder);
+        OutputView.printMenuSheet(OutputMessage.ORDER_TITLE, customerOrder);
 
         Integer totalPrice = promotionModel.transferTotalPrice();
         OutputView.printPriceSheet(OutputMessage.TOTAL_PRICE_TITLE, totalPrice);
@@ -67,7 +67,7 @@ public class PromotionController {
 
     private void showPaymentResult() {
         Integer benefitPrice = promotionModel.transferBenefitPrice();
-        OutputView.printPriceSheet(OutputMessage.TOTAL_BENEFIT_PRICE_TITLE, benefitPrice);
+        OutputView.printPriceSheet(OutputMessage.BENEFIT_PRICE_TITLE, benefitPrice);
 
         Integer finalPayment = promotionModel.getFinalPayment();
         OutputView.printPriceSheet(OutputMessage.FINAL_PAYMENT_TITLE, finalPayment);
