@@ -18,7 +18,6 @@ public class PromotionModel {
     private final Integer EVENT_MIN_AMOUNT = 10000;
     private Date date;
     private OrderList orderList;
-
     private Event event;
 
 
